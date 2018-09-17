@@ -1,98 +1,150 @@
-/*
-    Author Leandro.Zambelli@yahoo.com
+/* Leandro Zambelli
  */
 
 
-@import url(https://fonts.googleapis.com/css?family=Nunito:400);
+/* Colors:
+
+Baby Blue       - background:       #128af3
+Dark Blue       - title:            #00377F
+Deep Blue       - Buttons:          #0052bd
+White           - Main Paragraph:   #fff
+Dark Gray       - Footer:           #111
+
+*/
+
+
+@import url(https://fonts.googleapis.com/css?family=Nunito:300|600);
+
+html, body { height: 100%; min-height: 100% }
 
 body { 
     overflow-x: hidden !important;
     font-family: 'Nunito', sans-serif;
-    background: linear-gradient(145deg, #01b9ff 0%,#1386B2 100%);
-    border-top: 20px solid #222;
-    color: #002E40;
+    background: #128af3;
+    color: #00377F;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
+
+/* Custom scrollbar
+*/
+
+::-webkit-scrollbar{width: 12px}
+::-webkit-scrollbar-track{background:#0580EF}
+::-webkit-scrollbar-thumb{background:#0668C0}
+
+
+/* Loading screen
+*/
+
+#load { display: none }
+.loading { position: fixed; width: 100%; height: 100%; background: #128af3; overflow: hidden; z-index: 500}
+
+.centralized-text {width: 100%; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) }
 
 
 /* =BOOTSTRAP RESET
  */
 
-.btn-sm, .btn-group-sm > .btn { padding: 9px 35px 10px 35px; font-size: 14px; }
+.btn-sm, .btn-group-sm > .btn { padding: 9px 35px 10px 35px; font-size: 14px; border-radius: 2; transition: all ease 0.2s }
 
-.btn-primary { background-color: #fff; border-color: #fff; color: #002E40; font-weight: bold; font-family: sans-serif;}
-.btn-primary:hover { background-color: #002E40; border-color: #002E40 }
-.btn-primary:focus, .btn-primary.focus{background-color: #002E40; border-color: #002E40; color: #fff}
-.btn-primary:active, .btn-primary.active{background-color: #000!important; border-color: #000!important}
+.btn-primary { background-color: #0052bd; border-color: #0052bd; border-bottom: 3px solid; border-bottom-color: #fff; color: #fff; font-weight:lighter; text-transform: uppercase; font-size: 14px}
+.btn-primary:hover { background-color: #00377F; border-color: #00377F; border-bottom:3px solid; }
+.btn-primary:focus, .btn-primary.focus{background-color: #00377F; border-color: #00377F; color: #fff}
+.btn-primary:active, .btn-primary.active{background-color: #00377F!important; border-color: #00377F!important;}
 
 
 /* =ANIMATION
 */
 
-.animated { animation-duration: 1s; animation-fill-mode: both; }
-.fadeIn { animation-name: fadeIn; }
-.bounceInRight {  animation-name: bounceInRight; animation-delay: 0.45s }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.day { position: relative; z-index: 1; top: 25px; left: 0; width: 100%; }
+.cloud-1 { z-index: 2; top: 25px; left: 0; width: 100%; animation: clouds-1 3s infinite; }
+.cloud-2 { z-index: 3; top: 25px; left: 0; width: 100%; animation: clouds-2 3s infinite; }
+.biker { z-index: 4; top: 3px; right: 0%; width: 100%; opacity: 1 }
+
+@keyframes clouds-1 {
+    0% { left:-10px;}
+    50% { left:5px;}
+    100% { left: -10px; }
 }
 
-@keyframes bounceInRight {
-  from, 60%, 75%, 90%, to { animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
-  0%  { opacity: 0; transform: translate3d(3000px, 0, 0); }
-  60% { opacity: 1; transform: translate3d(-25px, 0, 0); }
-  75% { transform: translate3d(10px, 0, 0); }
-  90% { transform: translate3d(-5px, 0, 0); }
-  to  { transform: translate3d(0, 0, 0); }
+@keyframes clouds-2 {
+    0% { left:15px}
+    50% { left:-5px}
+    100% { left: 15px}
 }
 
 
-/* =CLASSES
+/* loading spiner */
+
+.lds-dual-ring { display: block; margin: 0 auto; width: 64px; height: 64px; }
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* =helper classes
  */
 
-.line { height: 2px; width: 70px; margin:10px 0 10px 0; background: #002E40 } /* linha usada embaixo dos titulo */
+.line { height: 2px; width: 70px; margin:10px 0 10px 0; background: #00377F } /* linha usada embaixo dos titulo */
 
-.space { margin-top: 104px } /* cria espaco entre rows */
+.absolute { position: absolute; }
 
-@media (max-width:767px){
-    .space { margin-top: 68px }
-}
-.svg-footer { position: relative; top: 7px; left: 0; width: 100%; fill: #222; z-index: 2 }
+.space { margin-top: 64px } /* cria espaco entre rows */
 
 
 /* =TYPOGRAPHY
  */
 
-h1 { font-size: 46px; }
-h2 { font-size: 30px; }
-h3, h4 { font-size: 20px; }
+h1 { font-size: 42px; }
+h2 { font-size: 36px; }
+h3 { font-size: 26px; }
 
-@media (max-width:767px) { 
-    h1 { font-size: 40px }
-}
 
-p { margin-top: 0; margin-bottom: 1.6em; font-size: 20px; line-height: 1.4em; }
+p { margin-top: 0; margin-bottom: 1.6em; font-size: 24px; line-height: 1.4em; color: #fff; }
 p:last-child { margin-bottom: 0 }
 
-a { transition: all ease 0.15s }
+a { transition: all ease 0.15s; color: #00377F; }
 
 a[href^="tel:"], a[href^="mailto:"] { color: #fff; }
-a[href^="tel:"]:hover, a[href^="mailto:"]:hover { color: #FF335E; text-decoration: none }
+a[href^="tel:"]:hover, a[href^="mailto:"]:hover { color: #00377F; text-decoration: none }
 
 
-/* =HEADER
+/* =header & Nav
 */
 
 header { padding-top: 40px; padding-bottom: 40px}
 
+nav { margin-top: 10px}
+nav a { font-size: 1.2em; font-weight: 600; padding-right: 9px; position: relative }
+nav a:hover { color: #fff; text-decoration: none }
+nav a.active { color: #fff }
 
-/* =FOOTER
+/* =main
+*/
+
+main { padding-top: 52px; padding-bottom: 104px }
+
+
+/* =footer
  */
 
-footer { padding:0 0 70px 0;  background: #222; }
-
-@media (max-width:767px) { 
-    footer { padding:40px 0 70px 0; }
-}
-
-.footer-bottom {  padding:8px 0 10px 0; background:#181818; font-size:0.85em!important; color:#eee; }
+footer { width: 100%; padding:8px 0 10px 0; background: #111; font-size:0.85em; color:#eee; position: fixed; bottom: 0; z-index: 1000}
+footer a{ color: #fff}
